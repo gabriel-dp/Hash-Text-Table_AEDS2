@@ -1,5 +1,8 @@
 #include "hash.h"
 
+#define EMPTY "-----"
+#define INDEX_NOT_FOUND -1
+
 hash* createHashTable(int length) {
     hash* newHashTable = (hash*)(malloc(length * sizeof(hash)));
     for (int i = 0; i < length; i++) {
@@ -40,11 +43,11 @@ void addOccurrence(hash* hashCell, int line) {
     }
 }
 
-void insertElement(hash* hashTable, char* string, int line, int maxLength) {
+void insertElement(hash* hashTable, char* string, int line) {
     int index = hashGenerator(string);
 
     int counter = 0;
-    while (counter < maxLength) {
+    while (counter < SLOTS) {
         if (strcmp(hashTable[index].word, EMPTY) == 0) {
             strcpy(hashTable[index].word, string);
             addOccurrence(&hashTable[index], line);
@@ -55,10 +58,47 @@ void insertElement(hash* hashTable, char* string, int line, int maxLength) {
             return;
         }
         counter++;
-        index = ++index % maxLength;
+        index = ++index % SLOTS;
     }
     printf("ERROR - HASH COMPLETE");
     exit(1);
+}
+
+int searchElementIndex(hash* hashTable, char* string){
+
+    int index = hashGenerator(string);
+    int counter = 0;
+    while (counter < SLOTS){
+        if (strcmp(hashTable[index].word, EMPTY) == 0){
+            return INDEX_NOT_FOUND;
+        }
+        if (strcmp(hashTable[index].word, string) == 0){
+            return index;
+        }
+
+        counter++;
+        index = ++index % SLOTS;
+    }
+    return INDEX_NOT_FOUND;
+    
+}
+
+void printOccurrences(hash* hashTable, char* string){
+    int index = searchElementIndex(hashTable, string);
+    if (index == INDEX_NOT_FOUND){
+        printf("ERROR");
+        return;
+    }
+
+    printf("%d %s", hashTable[index].quantity, hashTable[index].word);
+
+    occurrence_t** aux = &(hashTable[index].first);
+    do{
+        printf(" %d", (*aux)->line);
+        aux = &((*aux)->p_prox);
+    }while((*aux) != NULL);
+
+    printf("\n");
 }
 
 void printHashTable(hash* hashTable) {
