@@ -38,8 +38,10 @@ void insertWordsFromFile(hash* hashTable, char* fileName){
 
         char* singleWord = strtok(lineString, delimiters);
         while (singleWord != NULL) {
-            toLowerCaseString(singleWord);
-            insertElement(hashTable, singleWord, line);
+            if (strlen(singleWord) >= 2) { // Ignore single-letter words 
+                toLowerCaseString(singleWord);
+                insertElement(hashTable, singleWord, line);
+            }
             singleWord = strtok(NULL, delimiters);
         }
         
