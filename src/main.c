@@ -2,5 +2,7 @@
 
 void main() {
     hash* hashTable = createHashTable(SLOTS);
-    printf("|%i|", hashGenerator("gab"));
+    insertElement(hashTable, "gabriel", 5, SLOTS);
+    insertElement(hashTable, "davi", 7, SLOTS);
+    printHashTable(hashTable);
 }
