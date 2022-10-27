@@ -20,8 +20,10 @@ OBJECTS :=$(patsubst %,$(BUILDDIR)/%.o,$(NAMES))
 
 # Rule for link and generate the binary file
 all: $(OBJECTS)
+	@mkdir -p $(BINDIR)
 	$(CC) -o $(BINDIR)/$(BINARY) $+
 
 # Rule for object binaries compilation
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(BUILDDIR)
 	$(CC) -c $^ -o $@
