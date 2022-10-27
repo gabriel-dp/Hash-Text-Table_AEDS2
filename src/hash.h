@@ -20,9 +20,8 @@ typedef struct {
     occurrence_t* first;
 } hash;
 
-hash* createHashTable(int);
+hash* createHashTable();
 void insertElement(hash*, char*, int);
-void printOccurrences(hash*, char*);
-void printHashTable(hash*); 
+void printOccurrences(hash*, char*); 
 
 #endif
