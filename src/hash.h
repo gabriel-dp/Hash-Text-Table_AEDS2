@@ -1,10 +1,10 @@
 #ifndef HASH_H
 
+#define HASH_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define HASH_H
 
 #define SLOTS 509
 #define MAX_WORD_LENGTH 20
@@ -21,11 +21,8 @@ typedef struct {
 } hash;
 
 hash* createHashTable(int);
-int hashGenerator(char*);
 void insertElement(hash*, char*, int);
-int searchElementIndex(hash*, char*);
-void addOccurrence(hash*, int);
-void printHashTable(hash*);
 void printOccurrences(hash*, char*);
+void printHashTable(hash*); 
 
 #endif
