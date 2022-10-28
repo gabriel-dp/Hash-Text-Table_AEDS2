@@ -22,6 +22,6 @@ typedef struct {
 
 hash* createHashTable();
 void insertElement(hash*, char*, int);
-void printOccurrences(hash*, char*); 
+void printOccurrences(hash*, char*);
 
 #endif

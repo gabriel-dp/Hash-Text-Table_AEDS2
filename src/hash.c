@@ -35,7 +35,7 @@ occurrence_t* createOccurrence(int line) {
 void addOccurrence(hash* hashCell, int line) {
     occurrence_t** aux = &hashCell->first;
 
-    if (*aux == NULL) { // First occurrence is NULL
+    if (*aux == NULL) {  // First occurrence is NULL
         *aux = createOccurrence(line);
         hashCell->quantity = 1;
     } else {
@@ -54,14 +54,14 @@ void insertElement(hash* hashTable, char* string, int line) {
     int counter = 0;
     while (counter < SLOTS) {
         // Slot is EMPTY, can assign the string and add new occurrence
-        if (strcmp(hashTable[index].word, EMPTY) == 0) { 
+        if (strcmp(hashTable[index].word, EMPTY) == 0) {
             strcpy(hashTable[index].word, string);
             addOccurrence(&hashTable[index], line);
             return;
         }
 
         // Slot has the same string, add line occurrence
-        if (strcmp(hashTable[index].word, string) == 0) { 
+        if (strcmp(hashTable[index].word, string) == 0) {
             addOccurrence(&hashTable[index], line);
             return;
         }
@@ -70,7 +70,7 @@ void insertElement(hash* hashTable, char* string, int line) {
         index = ++index % SLOTS;
     }
 
-    printf("ERROR - HASH COMPLETE");
+    printf("\nERROR - HashTable full (more than %d different words)\n\n", SLOTS);
     exit(1);
 }
 
@@ -78,7 +78,7 @@ void insertElement(hash* hashTable, char* string, int line) {
 int searchElementIndex(hash* hashTable, char* string) {
     int index = hashGenerator(string);
     int counter = 0;
-    while (counter < SLOTS){
+    while (counter < SLOTS) {
         // Slot is EMPTY, string was not found
         if (strcmp(hashTable[index].word, EMPTY) == 0) {
             return INDEX_NOT_FOUND;
@@ -100,8 +100,8 @@ int searchElementIndex(hash* hashTable, char* string) {
 // Print "quantity" + "word" + occurrences of a string in the hashTable
 void printOccurrences(hash* hashTable, char* string) {
     int index = searchElementIndex(hashTable, string);
-    if (index == INDEX_NOT_FOUND){
-        printf("0 '%s'\n", string);
+    if (index == INDEX_NOT_FOUND) {
+        printf("0 %s\n", string);
         return;
     }
 
@@ -111,8 +111,8 @@ void printOccurrences(hash* hashTable, char* string) {
     occurrence_t** aux = &(hashTable[index].first);
     do {
         printf(" %d", (*aux)->line);
-        aux = &((*aux)->p_prox); 
-    } while ((*aux) != NULL); 
+        aux = &((*aux)->p_prox);
+    } while ((*aux) != NULL);
 
     printf("\n");
 }

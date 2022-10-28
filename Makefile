@@ -7,11 +7,10 @@ BINARY := out
 # Source code file extension
 SRCEXT := c
 
-# Source code directory structure
-BINDIR := bin
+# Code directory structure
 SRCDIR := src
+BINDIR := bin
 BUILDDIR := build
-TESTDIR := test
 
 # %.o file names
 NAMES := $(notdir $(basename $(wildcard $(SRCDIR)/*.$(SRCEXT))))
@@ -20,10 +19,18 @@ OBJECTS :=$(patsubst %,$(BUILDDIR)/%.o,$(NAMES))
 
 # Rule for link and generate the binary file
 all: $(OBJECTS)
-	@mkdir -p $(BINDIR)
+ifdef OS # Windows
+	if not exist "$(BINDIR)" mkdir $(BINDIR)
+else # Linux
+	mkdir -p $(BINDIR)
+endif
 	$(CC) -o $(BINDIR)/$(BINARY) $+
 
 # Rule for object binaries compilation
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@mkdir -p $(BUILDDIR)
+ifdef OS # Windows
+	if not exist "$(BUILDDIR)" mkdir $(BUILDDIR)
+else # Linux
+	mkdir -p $(BUILDDIR)
+endif
 	$(CC) -c $^ -o $@
