@@ -5,8 +5,8 @@
 
 // Create hashTable and assign EMPTY for all words
 hash* createHashTable() {
-    hash* newHashTable = (hash*)(malloc(SLOTS * sizeof(hash)));
-    for (int i = 0; i < SLOTS; i++) {
+    hash* newHashTable = (hash*)(malloc(HASH_SLOTS * sizeof(hash)));
+    for (int i = 0; i < HASH_SLOTS; i++) {
         strcpy(newHashTable[i].word, EMPTY);
         newHashTable[i].first = NULL;
     }
@@ -19,7 +19,7 @@ int hashGenerator(char* string) {
     for (int i = 0; i < strlen(string); i++) {
         key += ((i + 1) * string[i]);
     }
-    int index = key % SLOTS;
+    int index = key % HASH_SLOTS;
     return index;
 }
 
@@ -52,7 +52,7 @@ void insertElement(hash* hashTable, char* string, int line) {
     int index = hashGenerator(string);
 
     int counter = 0;
-    while (counter < SLOTS) {
+    while (counter < HASH_SLOTS) {
         // Slot is EMPTY, can assign the string and add new occurrence
         if (strcmp(hashTable[index].word, EMPTY) == 0) {
             strcpy(hashTable[index].word, string);
@@ -67,10 +67,10 @@ void insertElement(hash* hashTable, char* string, int line) {
         }
 
         counter++;
-        index = ++index % SLOTS;
+        index = ++index % HASH_SLOTS;
     }
 
-    printf("\nERROR - HashTable full (more than %d different words)\n\n", SLOTS);
+    printf("\nERROR - HashTable full (more than %d different words)\n\n", HASH_SLOTS);
     exit(1);
 }
 
@@ -78,7 +78,7 @@ void insertElement(hash* hashTable, char* string, int line) {
 int searchElementIndex(hash* hashTable, char* string) {
     int index = hashGenerator(string);
     int counter = 0;
-    while (counter < SLOTS) {
+    while (counter < HASH_SLOTS) {
         // Slot is EMPTY, string was not found
         if (strcmp(hashTable[index].word, EMPTY) == 0) {
             return INDEX_NOT_FOUND;
@@ -90,10 +90,10 @@ int searchElementIndex(hash* hashTable, char* string) {
         }
 
         counter++;
-        index = ++index % SLOTS;
+        index = ++index % HASH_SLOTS;
     }
 
-    // Seached in all slots but did not found
+    // Seached in all HASH_SLOTS but did not found
     return INDEX_NOT_FOUND;
 }
 
