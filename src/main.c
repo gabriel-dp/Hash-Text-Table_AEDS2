@@ -84,12 +84,6 @@ void main(int argc, char* argv[]) {
     }
 
     hash* hashTable = createHashTable();
-
     insertWordsFromFile(hashTable, argv[1]);
     printOccurrencesFromFile(hashTable, argv[2]);
-
-    printf("\n\n");
-    for (int i = 0; i < HASH_SLOTS; i++) {
-        printf("%d - |%20s|\n", i + 1, hashTable[i].word);
-    }
 }
