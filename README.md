@@ -2,7 +2,7 @@
 
 Collaborative Practical Work to deal with texts using hash implementation in C.
 
-[See docs](./docs/)
+[`> See documentation <`](./docs/README.md)
 
 &nbsp;
 
