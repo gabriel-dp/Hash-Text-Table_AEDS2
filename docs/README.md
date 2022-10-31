@@ -17,7 +17,7 @@ Some intro here..........
 
 ## The problem
 
-[`> See original work instructions (PDF) <`](./original.pdf)
+[`> See original work instructions (PDF) <`](./original-instructions.pdf)
 
 ---
 
