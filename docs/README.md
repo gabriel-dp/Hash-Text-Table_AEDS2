@@ -1,60 +1,36 @@
 # Hash Text Table (Docs)
 
-Some intro here..........
-
----
-
-- [The Problem](#the-problem)
-  - [Description](#description)
-  - [Input](#input)
-  - [Output](#output)
-
----
+The challenge is to use a hash table to search the occurrences of a word in a text, making a program efficient in its CPU and memory usage.
 
 &nbsp;
 
-&nbsp;
 
-## The problem
+## Understanding the problem
 
 [`> See original work instructions (PDF) <`](./original-instructions.pdf)
 
 ---
 
-### Description
+### Important instructions details
 
-```c
-/*
-** Important details
-**
-** Hash table must use Open Adressing
-** Each word must be assigned to a unique slot
-** Ignore single character words
-** Ignore UPPER and lower case differences
-*/
-```
+
+- Hash table must use Open Adressing
+- Each word must be assigned to a unique slot
+- Ignore single character words
+- Ignore UPPER and lower case differences
 
 ---
 
 ### Input
 
-```c
-// File names
-const char* outputFile = "prog";
-const char* inputFile = "input.txt";
-const char* searchFile = "pesquisa.txt";
-```
+The program must to read two files
+- input.txt
+- pesquisa.txt
 
 #### input.txt
 
 Random text with some limitations like described below.
 
-```c
-// Text Limitations
-const int MAX_WORDS_INPUT = 256;
-const int MAX_CHAR_PER_WORD = 20;
-const int MAX_CHAR_PER_LINE = 80;
-```
 
 ```txt
 Pedra, papel, tesoura, lagarto, Spock.
@@ -63,10 +39,16 @@ lagarto envenena Spock, Spock esmaga tesoura, tesoura decapita lagarto, lagarto 
 papel refuta Spock, Spock vaporiza pedra e como sempre, pedra quebra tesoura...
 Sheldon Cooper
 ```
+```c
+// Text Limitations
+#define MAX_WORDS_INPUT 256
+#define MAX_CHAR_PER_WORD 20
+#define MAX_CHAR_PER_LINE 80
+```
 
-#### ./pesquisa.txt
+#### pesquisa.txt
 
-Random words to be searched in the input file. The first line contains the words quantity.
+Random words to be searched in the input file, one per line. The first line contains the words quantity.
 
 ```c
 6
@@ -82,11 +64,9 @@ esmaga
 
 ### Output
 
-#### ./prog
+The result must be printed on console. Each line must have quantity, word and occurrences separated with spaces.  
 
-```txt
-quantity word lines
-```
+`quantity word lines`
 
 ```c
 5 lagarto 1 2 3
