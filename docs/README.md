@@ -1,9 +1,12 @@
 # Hash Text Table (Docs)
 
-The challenge is to use a hash table to search the occurrences of a word in a text, making a program efficient in its CPU and memory usage.
+The challenge is to use a hash table to search the occurrences of a word in a text, making a program efficient in its CPU and memory usage. In addition to producing the software, the duo must develop a complete documentation on what was done to reach the final product.
 
 &nbsp;
 
+[![button](./docs-button.png)](./original-instructions.pdf)
+
+&nbsp;
 
 ## Understanding the problem
 
@@ -12,7 +15,6 @@ The challenge is to use a hash table to search the occurrences of a word in a te
 ---
 
 ### Important instructions details
-
 
 - Hash table must use Open Adressing
 - Each word must be assigned to a unique slot
@@ -24,13 +26,13 @@ The challenge is to use a hash table to search the occurrences of a word in a te
 ### Input
 
 The program must to read two files
+
 - input.txt
 - pesquisa.txt
 
 #### input.txt
 
 Random text with some limitations like described below.
-
 
 ```txt
 Pedra, papel, tesoura, lagarto, Spock.
@@ -39,6 +41,7 @@ lagarto envenena Spock, Spock esmaga tesoura, tesoura decapita lagarto, lagarto 
 papel refuta Spock, Spock vaporiza pedra e como sempre, pedra quebra tesoura...
 Sheldon Cooper
 ```
+
 ```c
 // Text Limitations
 #define MAX_WORDS_INPUT 256
@@ -64,7 +67,7 @@ esmaga
 
 ### Output
 
-The result must be printed on console. Each line must have quantity, word and occurrences separated with spaces.  
+The result must be printed on console. Each line must have quantity, word and occurrences separated with spaces.
 
 `quantity word lines`
 
