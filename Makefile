@@ -4,33 +4,30 @@ CC := gcc
 # Final file name
 BINARY := out
 
-# Source code file extension
-SRCEXT := c
-
 # Code directory structure
 SRCDIR := src
 BINDIR := bin
 BUILDDIR := build
 
+# Compiler flags
+CFLAGS := -lm -Wall
+
 # %.o file names
-NAMES := $(notdir $(basename $(wildcard $(SRCDIR)/*.$(SRCEXT))))
+NAMES := $(notdir $(basename $(wildcard $(SRCDIR)/*.c)))
 OBJECTS :=$(patsubst %,$(BUILDDIR)/%.o,$(NAMES))
 
 
 # Rule for link and generate the binary file
 all: $(OBJECTS)
-ifdef OS # Windows
-	if not exist "$(BINDIR)" mkdir $(BINDIR)
-else # Linux
-	mkdir -p $(BINDIR)
-endif
-	$(CC) -o $(BINDIR)/$(BINARY) $+
+	@ if [ ! -d ./$(BINDIR) ]; then mkdir -p $(BINDIR);	fi
+	$(CC) -o $(BINDIR)/$(BINARY) $+ $(CFLAGS)
 
 # Rule for object binaries compilation
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-ifdef OS # Windows
-	if not exist "$(BUILDDIR)" mkdir $(BUILDDIR)
-else # Linux
-	mkdir -p $(BUILDDIR)
-endif
+	@ if [ ! -d ./$(BINDIR) ]; then mkdir -p $(BUILDDIR);	fi
 	$(CC) -c $^ -o $@
+
+
+# Clean BIN and BUILD dirs
+clean: 
+	rm -rf $(BUILDDIR) $(BINDIR)
