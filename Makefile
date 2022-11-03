@@ -23,11 +23,13 @@ all: $(OBJECTS)
 	$(CC) -o $(BINDIR)/$(BINARY) $+ $(CFLAGS)
 
 # Rule for object binaries compilation
-$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@ if [ ! -d ./$(BINDIR) ]; then mkdir -p $(BUILDDIR);	fi
-	$(CC) -c $^ -o $@
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c
+	@ if [ ! -d ./$(BINDIR) ]; then mkdir -p $(BUILDDIR);fi
+	$(CC) -c $^ -o $@ $(CFLAGS)
+
 
 
 # Clean BIN and BUILD dirs
+.PHONY: clean
 clean: 
 	rm -rf $(BUILDDIR) $(BINDIR)
