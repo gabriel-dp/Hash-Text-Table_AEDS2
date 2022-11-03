@@ -67,7 +67,8 @@ void insertElement(hash* hashTable, char* string, int line) {
         }
 
         counter++;
-        index = ++index % HASH_SLOTS;
+        index++;
+        index = index % HASH_SLOTS;
     }
 
     printf("\nERROR - HashTable full (more than %d different words)\n\n", HASH_SLOTS);
@@ -90,7 +91,8 @@ int searchElementIndex(hash* hashTable, char* string) {
         }
 
         counter++;
-        index = ++index % HASH_SLOTS;
+        index++;
+        index = index % HASH_SLOTS;
     }
 
     // Seached in all HASH_SLOTS but did not found

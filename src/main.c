@@ -77,13 +77,15 @@ void printOccurrencesFromFile(hash* hashTable, char* fileName) {
     }
 }
 
-void main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
     if (argc != 3) {
         printf("\nERROR - Type correctly the directory of input and words files\n\n");
-        exit(1);
+        return 1;
     }
 
     hash* hashTable = createHashTable();
     insertWordsFromFile(hashTable, argv[1]);
     printOccurrencesFromFile(hashTable, argv[2]);
+
+    return 0;
 }
