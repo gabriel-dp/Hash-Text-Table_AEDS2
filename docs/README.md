@@ -4,7 +4,7 @@ The challenge is to use a hash table to search the occurrences of a word in a te
 
 &nbsp;
 
-[![button](./docs-button.png)](./original-instructions.pdf)
+[![button](./docs-button.png)](./documentation.pdf)
 
 &nbsp;
 
