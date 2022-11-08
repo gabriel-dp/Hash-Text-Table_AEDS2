@@ -33,6 +33,6 @@ const float semester = 2022.2;
 # Run Makefile to compile the program
 make
 
-# Run the program wih the input files args
-./bin/out ./data/input.txt ./data/words.txt
+# Run the executable wih the input files args
+./bin/out ./tests/input.txt ./tests/words.txt
 ```
