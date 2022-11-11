@@ -48,7 +48,7 @@ void addOccurrence(hash* hashCell, int line) {
 }
 
 // Insert the string in hashTable by hash
-void insertElement(hash* hashTable, char* string, int line, int* collisions) {
+void insertElement(hash* hashTable, char* string, int line) {
     int index = hashGenerator(string);
 
     int counter = 0;
@@ -67,7 +67,6 @@ void insertElement(hash* hashTable, char* string, int line, int* collisions) {
         }
 
         counter++;
-        (*collisions)++;
         index++;
         index = index % HASH_SLOTS;
     }

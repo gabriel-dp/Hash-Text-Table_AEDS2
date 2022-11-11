@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define HASH_SLOTS 512
+#define HASH_SLOTS 509
 #define MAX_CHAR_PER_LINE 80
 #define MAX_CHAR_PER_WORD 20
 #define DELIMITERS " ,.;:!?()"
@@ -22,7 +22,7 @@ typedef struct {
 } hash;
 
 hash* createHashTable();
-void insertElement(hash*, char*, int, int*);
+void insertElement(hash*, char*, int);
 void printOccurrences(hash*, char*);
 
 #endif

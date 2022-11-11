@@ -21,7 +21,7 @@ void toLowerCaseString(char string[MAX_CHAR_PER_WORD + 1]) {
 **  - Split words
 **  - Add each word to hashTable
 */
-void insertWordsFromFile(hash* hashTable, char* fileName, int* collisions) {
+void insertWordsFromFile(hash* hashTable, char* fileName) {
     FILE* file = fopen(fileName, "r");
     if (file == NULL) {
         printf("\nERROR - Input file not found\n\n");
@@ -38,7 +38,7 @@ void insertWordsFromFile(hash* hashTable, char* fileName, int* collisions) {
             // Ignore single-letter words
             if (strlen(singleWord) > 1) {
                 toLowerCaseString(singleWord);
-                insertElement(hashTable, singleWord, line, collisions);
+                insertElement(hashTable, singleWord, line);
             }
 
             singleWord = strtok(NULL, DELIMITERS);
@@ -84,13 +84,9 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    int collisions = 0;
-
     hash* hashTable = createHashTable();
-    insertWordsFromFile(hashTable, argv[1], &collisions);
+    insertWordsFromFile(hashTable, argv[1]);
     printOccurrencesFromFile(hashTable, argv[2]);
-
-    printf("\n\n| %d collisions |\n\n", collisions);
 
     return 0;
 }
